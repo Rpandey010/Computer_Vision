@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 
 # Load the image
 img = cv2.imread(r'C:\Users\Raja\PycharmProjects\Computer_Vision\img\filtering.png', cv2.IMREAD_GRAYSCALE)
@@ -27,20 +26,8 @@ for i in range(padding_size, noisy_img.shape[0] - padding_size):
         output_image[i, j] = average_value
 
 # Output
-plt.figure(figsize=(12, 4))
-plt.subplot(131)
-plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.title('Original Image')
-plt.axis('off')
-
-plt.subplot(132)
-plt.imshow(cv2.cvtColor(noisy_img, cv2.COLOR_BGR2RGB))
-plt.title('Noisy Image')
-plt.axis('off')
-
-plt.subplot(133)
-plt.imshow(cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB))
-plt.title('Filtered Image')
-plt.axis('off')
-
-plt.show()
+cv2.imshow("Input Image", img)
+cv2.imshow("Noisy Image", noisy_img)
+cv2.imshow("Filtered image", output_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows

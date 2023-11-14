@@ -1,13 +1,14 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 
-img = cv2.imread(r'C:\Users\Raja\PycharmProjects\Computer_Vision\img\saltpepper.png', 0)
+img = cv2.imread(r'C:\Users\Raja\PycharmProjects\Computer_Vision\img\saltpepper.png', cv2.IMREAD_GRAYSCALE)
 img = img / 255
 
 # Create a blank image
 x, y = img.shape
-g = np.zeros((x, y), dtype=np.float32)
+
+# NOISEEEEEEE
+g = np.zeros((x, y), dtype=np.float32)     
 
 # Salt and pepper noise levels
 pepper = 0.1
@@ -44,20 +45,8 @@ def median_filter(image, filter_size):
 filtered_image = median_filter(g, filter_size)
 
 # Output
-plt.figure(figsize=(12, 4))
-plt.subplot(131)
-plt.imshow(img, cmap='gray')
-plt.title('Original Image')
-plt.axis('off')
-
-plt.subplot(132)
-plt.imshow(g, cmap='gray')
-plt.title('Noisy Image')
-plt.axis('off')
-
-plt.subplot(133)
-plt.imshow(filtered_image, cmap='gray')
-plt.title('Filtered Image')
-plt.axis('off')
-
-plt.show()
+cv2.imshow("Input Image", img)
+cv2.imshow("Noisy Image", g)
+cv2.imshow("Filtered image", filtered_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows

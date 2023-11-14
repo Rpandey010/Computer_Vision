@@ -1,6 +1,13 @@
 import cv2
 import numpy as np
 
+image = cv2.imread(r'C:\Users\Raja\PycharmProjects\Computer_Vision\img\circuit.png', cv2.IMREAD_GRAYSCALE)
+
+# Define a structuring element
+kernel = np.array([[1, 1, 1],
+                   [1, 1, 1],
+                   [1, 1, 1]], dtype=np.uint8)
+
 def erosion(image, kernel):
     m, n = image.shape
     k, l = kernel.shape
@@ -12,14 +19,6 @@ def erosion(image, kernel):
             eroded_image[i, j] = np.min(pad_image[i:i+k, j:j+l] * kernel)
 
     return eroded_image
-
-
-image = cv2.imread(r'C:\Users\Raja\PycharmProjects\Computer_Vision\img\circuit.png', cv2.IMREAD_GRAYSCALE)
-
-# Define a structuring element
-kernel = np.array([[1, 1, 1],
-                   [1, 1, 1],
-                   [1, 1, 1]], dtype=np.uint8)
 
 # Perform erosion
 eroded_image = erosion(image, kernel)
